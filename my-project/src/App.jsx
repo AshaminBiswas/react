@@ -1,21 +1,47 @@
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import React from "react"
-import Card from "../components/Card"
-function App() {
+import { useState } from 'react'
+import { useEffect } from 'react'
+import Nav from './Nav'
 
+function App() {
+  const [count, setCount] = useState(0)
+  const [color, setColor] = useState(0)
+  // const [first, setfirst] = useState(0)
+
+
+  // case1: run on every render 
+
+  // useEffect(() => {
+  //   alert("Welcome to my page")
+  // }, [])
+
+
+
+// case2: run only on first render
+
+  useEffect(() => {
+    alert("count was change")
+    setColor(color + 1)
+  }, [count])
+
+
+
+  // case3: run only when certain values change
+  
+  // useEffect(() => {
+  //   alert("first --")
+  // }, [color])
 
   return (
     <>
-      <Navbar />
-      <div className="cards">
-        <Card  title="Card1" description="Ashamin1"/>
-        <Card  title="Card2" description="Ashamin2"/>
-        <Card  title="Card3" description="Ashamin3"/>
-        <Card  title="Card4" description="Ashamin4"/>
-      </div>
+      {/* USE EFFECT HOOK */}
 
-      <Footer />
+      <Nav color={"blue" + " red" + color} />
+      <div className='top-0 m-auto'>count is {count}</div>
+      <button onClick={() => {
+        setCount(count + 1)
+      }}>Update Count</button>
+
+      
     </>
   )
 }
